@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 from .forms import RegistrationForm
 
 def register_user(request):
@@ -8,6 +9,10 @@ def register_user(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            # login & redirect
+            new_user = authenticate(username=form.cleaned_data['username'],
+                password=form.cleaned_data['password1'],)
+            login(request, new_user)
             return HttpResponseRedirect('/')
     else:
         form = RegistrationForm()
