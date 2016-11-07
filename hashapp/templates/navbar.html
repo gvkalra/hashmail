@@ -1,0 +1,11 @@
+{% if user.is_authenticated %}
+	<h1>Welcome, {{ user.username }}</h1>
+	<p><a href="/notifications">View Notifications</a></p>
+	<p><a href="/publish">Publish Images</a></p>
+	<p><a href="/subscribe">Edit Subscriptions</a></p>
+	<p><a href="{% url 'auth_logout' %}?next=/">Logout</a></p>
+{% else %}
+	<h1>Welcome to HISS</h1>
+	<p><a href="/accounts/login">Login</a></p>
+	<p><a href="/signup">Sign-Up</a></p>
+{% endif %}

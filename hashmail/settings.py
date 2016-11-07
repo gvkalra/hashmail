@@ -137,4 +137,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Added for HISS
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/accounts/login'
+LOGIN_URL = '/accounts/login/'

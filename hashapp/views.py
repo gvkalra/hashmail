@@ -16,3 +16,15 @@ def register_user(request):
 
 def view_index(request):
     return render(request, 'index.html')
+
+@login_required
+def publish_image(request):
+	return render(request, 'publish.html')
+
+@login_required
+def edit_subscription(request):
+	return render(request, 'subscribe.html')
+
+@login_required
+def view_notifications(request):
+	return render(request, 'notifications.html')

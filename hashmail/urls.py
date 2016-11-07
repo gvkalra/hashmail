@@ -23,6 +23,9 @@ urlpatterns = [
     url(r'^logout/$', 'django.contrib.auth.views.logout',
         {'next_page': '/'}, name='auth_logout'),
     url(r'^signup/', hashapp.views.register_user),
+    url(r'^notifications/', hashapp.views.view_notifications),
+    url(r'^publish/', hashapp.views.publish_image),
+    url(r'^subscribe/', hashapp.views.edit_subscription),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', admin.site.urls),
 ]
