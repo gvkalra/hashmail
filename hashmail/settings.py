@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'hashapp',
+    'cloudinary',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -138,3 +139,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Added for HISS
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
+os.environ["CLOUDINARY_URL"]='cloudinary://193889446124356:w2zYrSQqsowK65p5Zvb-655j084@hyiclya8s'

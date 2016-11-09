@@ -1,6 +1,9 @@
 from django import forms
+from django.forms import ModelForm, Textarea
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import ImageModel
+from cloudinary.forms import CloudinaryJsFileField
 
 class RegistrationForm(UserCreationForm):
 	email = forms.EmailField(required=True)
@@ -21,3 +24,7 @@ class RegistrationForm(UserCreationForm):
 			user.save()
 
 		return user
+
+class ImageDirectForm(forms.Form):
+	image = CloudinaryJsFileField()
+	tags = forms.CharField(required=True)
