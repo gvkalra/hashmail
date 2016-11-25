@@ -1,7 +1,7 @@
 HISS
 ============
 
-#Hashtag Image Sharing Service.
+\#Hashtag Image Sharing Service.
 
 # Setting up development environment
 --------------------------------------------
