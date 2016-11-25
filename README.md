@@ -28,6 +28,11 @@ sqlitebrowser
 ```bash
 $ sudo apt-get install sqlitebrowser
 ```
+postgresql
+```bash
+$ sudo apt-get install postgresql
+$ sudo apt-get install libpq-dev
+```
 
 **Clone project**
 
