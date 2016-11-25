@@ -5,7 +5,8 @@ HISS
 
 Setting up development environment
 --------------------------------------------
-## Install Dependencies
+**Install Dependencies**
+
 Ruby
 ```bash
 $ sudo apt-get install ruby-full
@@ -28,31 +29,36 @@ sqlitebrowser
 $ sudo apt-get install sqlitebrowser
 ```
 
-## Clone project
+**Clone project**
+
 ```bash
 $ git clone git@github.com:gvkalra/hashmail.git
 $ cd hashmail
 ```
 
-## Create & activate virtualenv
+**Create & activate virtualenv**
+
 ```bash
 $ virtualenv venv
 $ source venv/bin/activate
 (venv) $
 ```
 
-## Install required packages
+**Install required packages**
+
 ```
 (venv) $ pip install -r requirements.txt
 ```
 
-## Create database
+**Create database**
+
 ```bash
 (venv) $ python manage.py migrate
 (venv) $ python manage.py migrate --run-syncdb
 ```
 
-## Serve locally
+**Serve locally**
+
 ```bash
 (venv) $ heroku local -p 5000
 ```
@@ -61,7 +67,8 @@ It is not required to restart the server for editing files.
 
 Other useful commands
 --------------------------------------------
-## To create superuser in django
+**To create superuser in django**
+
 ```bash
 (venv) $ python manage.py createsuperuser
 ```
@@ -69,7 +76,8 @@ After this you can navigate to http://127.0.0.1:5000/admin and administer user a
 
 Notes
 --------------------------------------------
-### 'master' branch is auto deployed to heroku
+**'master' branch is auto deployed to heroku**
+
 Visit: http://hashmail.herokuapp.com/
 
 Authors
