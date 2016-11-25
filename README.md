@@ -3,7 +3,7 @@ HISS
 
 \#Hashtag Image Sharing Service.
 
-# Setting up development environment
+Setting up development environment
 --------------------------------------------
 ## Install Dependencies
 Ruby
@@ -59,7 +59,7 @@ $ source venv/bin/activate
 After this you can navigate to http://127.0.0.1:5000/ and develop HISS. <br/>
 It is not required to restart the server for editing files.
 
-# Other useful commands
+Other useful commands
 --------------------------------------------
 ## To create superuser in django
 ```bash
@@ -67,7 +67,7 @@ It is not required to restart the server for editing files.
 ```
 After this you can navigate to http://127.0.0.1:5000/admin and administer user accounts.
 
-# Notes
+Notes
 --------------------------------------------
 ### 'master' branch is auto deployed to heroku
 Visit: http://hashmail.herokuapp.com/
