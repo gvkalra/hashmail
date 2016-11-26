@@ -15,7 +15,7 @@ body {
 
 
 hr {
-    margin-top: 0;
+    margin: 0;
     border:1px solid #005952;
 }
 
@@ -41,6 +41,8 @@ h3,
 h4,
 h5,
 h6 {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 p {
@@ -51,7 +53,7 @@ p {
 
 .page-header {
     background-color: #005952;
-    margin-top: 0;
+    margin: 0;
     padding: 5px 20px 5px 20px;
     border-bottom: solid #003E39 5px;
 }
@@ -59,7 +61,6 @@ p {
 .page-header p {
     padding: 0;
     margin: 0;
-    margin-bottom: -8px;
     text-align: center;
 }
 
@@ -72,51 +73,36 @@ p {
     margin-bottom: 35px;
 }
 
-.navmenu {
+.navbar-default {
     padding-left: 0px;
     margin: 0;
     background-color: white;
-}
-
-.navmenu table {
-    width: 99%;
-    padding: 10px;
-    margin: 0;
-}
-
-.navmenu .logout {
-    text-align: right;
-}
-
-.navmenu .menu {
-    text-align: center;
-    font-size: 24px;
-}
-
-.navmenu a {
-    text-decoration: none;
-    padding: 5px 10px 5px 10px;
-    border-radius: 4px;
-    background-color: #F0FFF4;
-}
-.navmenu a:hover {
-    background-color: #EEFAF0;
 }
 
 .content {
     padding: 5px 10px 5px 10px;
 }
 
+.login {
+    text-align: center;
+    padding: 20px;
+}
+
+.signup {
+    padding: 20px;
+}
+
+.signup p {
+    margin: 0;
+}
+.signup p label {
+    margin: 0;
+}
+
 .button-white {
     color: #222;
     text-decoration: none;
-    font-weight: 500;
-    border-radius: 10px;
     background-color: white;
-    padding: 15px 40px 15px 40px;
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all .35s;
 }
 
 .button-white:hover {
@@ -124,21 +110,36 @@ p {
     background-color: #F4F4F4;
 }
 
+.button-lightgreen {
+    color: black;
+    text-decoration: none;
+    background-color: #F0FFF4;
+}
+
+.button-lightgreen:hover {
+    color: black;
+    background-color: #EEFAF0;
+}
+
 .button-green {
     color: white;
     text-decoration: none;
-    font-weight: 500;
-    border-radius: 10px;
     background-color: #5DA982;
-    padding: 15px 40px 15px 40px;
-    -webkit-transition: all .35s;
-    -moz-transition: all .35s;
-    transition: all .35s;
 }
 
 .button-green:hover {
     color: white;
     background-color: #4D936F;
+}
+
+.btn-xlg {
+    border-radius: 10px;
+    padding: 10px 25px 10px 25px;
+}
+
+.btn-xxlg {
+    border-radius: 10px;
+    padding: 15px 40px 15px 40px;
 }
 
 ::-moz-selection {

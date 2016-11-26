@@ -2,47 +2,72 @@
 {% load staticfiles %}
 
 {% block content %}
+<div class="content signup">
 <form method="post" action="">
     {% csrf_token %}
-    <table>
+    <table class="form-group">
     <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-	<td>{{ form.username.help_text }}</td>
-	<td>{{ form.username.errors.as_text }}</td>
+        <td><p>{{ form.username.label_tag }}</p></td>
+        <td><p>{{ form.username }}</p></td>
     </tr>
     <tr>
-        <td>{{ form.email.label_tag }}</td>
-        <td>{{ form.email }}</td>
-	<td>{{ form.email.help_text }}</td>
-	<td>{{ form.email.errors.as_text }}</td>
+	<td colspan="2">{{ form.username.help_text }}</td>
     </tr>
     <tr>
-        <td>{{ form.password1.label_tag }}</td>
-        <td>{{ form.password1 }}</td>
-	<td>{{ form.password1.help_text }}</td>
-	<td>{{ form.password1.errors.as_text }}</td>
+	<td colspan="2">{{ form.username.errors.as_text }}</td>
     </tr>
     <tr>
-        <td>{{ form.password2.label_tag }}</td>
-        <td>{{ form.password2 }}</td>
-	<td>{{ form.password2.help_text }}</td>
-	<td>{{ form.password2.errors.as_text }}</td>
+        <td><p>{{ form.email.label_tag }}</p></td>
+        <td><p>{{ form.email }}</p></td>
     </tr>
     <tr>
-        <td>{{ form.first_name.label_tag }}</td>
-        <td>{{ form.first_name }}</td>
-	<td>{{ form.first_name.help_text }}</td>
-	<td>{{ form.first_name.errors.as_text }}</td>
+	<td colspan="2">{{ form.email.help_text }}</td>
     </tr>
     <tr>
-        <td>{{ form.last_name.label_tag }}</td>
-        <td>{{ form.last_name }}</td>
-	<td>{{ form.last_name.help_text }}</td>
-	<td>{{ form.last_name.errors.as_text }}</td>
+	<td colspan="2">{{ form.email.errors.as_text }}</td>
+    </tr>
+    <tr>
+        <td><p>{{ form.password1.label_tag }}</p></td>
+        <td><p>{{ form.password1 }}</p></td>
+    </tr>
+    <tr>
+	<td colspan="2">{{ form.password1.help_text }}</td>
+    </tr>
+    <tr>
+	<td colspan="2">{{ form.password1.errors.as_text }}</td>
+    </tr>
+    <tr>
+        <td><p>{{ form.password2.label_tag }}</p></td>
+        <td><p>{{ form.password2 }}</p></td>
+    </tr>
+    <tr>
+	<td colspan="2">{{ form.password2.help_text }}</td>
+    </tr>
+    <tr>
+	<td colspan="2">{{ form.password2.errors.as_text }}</td>
+    </tr>
+    <tr>
+        <td><p>{{ form.first_name.label_tag }}</p></td>
+        <td><p>{{ form.first_name }}</p></td>
+    </tr>
+    <tr>
+	<td colspan="2">{{ form.first_name.help_text }}</td>
+    </tr>
+    <tr>
+	<td colspan="2">{{ form.first_name.errors.as_text }}</td>
+    </tr>
+    <tr>
+        <td><p>{{ form.last_name.label_tag }}</p></td>
+        <td><p>{{ form.last_name }}</p></td>
+    </tr>
+    <tr>
+	<td colspan="2">{{ form.last_name.help_text }}</td>
+    </tr>
+    <tr>
+	<td colspan="2">{{ form.last_name.errors.as_text }}</td>
     </tr>
     </table>
-
-    <input type="submit" value="Submit" />
+    <button type="submit" class="btn button-green btn-xlg">Sign up</button>
 </form>
+</div>
 {% endblock %}

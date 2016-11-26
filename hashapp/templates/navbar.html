@@ -1,22 +1,27 @@
 {% if user.is_authenticated %}
-<div class="navmenu">
-    <table><tbody>
-        <tr><td>Welcome, {{ user.username }}</td>
-            <td class="logout"><a href="{% url 'auth_logout' %}?next=/">Logout</a></td>
-        </tr></tbody>
-    </table>
-    <table class="menu"><tbody>
-        <tr><td><a href="/notifications">View</a></td>
-            <td><a href="/publish">Publish</a></td>
-            <td><a href="/subscribe">Subscriptions</a></td>
-        </tr></tbody>
-    </table>
-</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Welcome, {{ user.username }}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/notifications"> View </a></li>
+      <li><a href="/publish"> Publish </a></li> 
+      <li><a href="/subscribe"> Subscriptions </a></li> 
+    </ul>
+    <a href="{% url 'auth_logout' %}?next=/" class="btn btn-success navbar-btn button-green">Sign out</a>
+  </div>
+</nav>
 <hr/>
 {% else %}
-<div class="welcome">
-    <h1>Welcome to HISS</h1>
-    <p><a class="button-white" href="/accounts/login">Sign in</a></p>
-    <p><a class="button-green" href="/signup">Sign up</a></p>
+<div class="container">
+  <div class="jumbotron">
+    <div class="welcome">
+      <h1>Welcome to HISS</h1>
+      <p><a class="button-white btn-xxlg" href="/accounts/login">Sign in</a></p>
+      <p><a class="button-green btn-xxlg" href="/signup">Sign up</a></p>
+    </div>
+  </div>
 </div>
 {% endif %}
