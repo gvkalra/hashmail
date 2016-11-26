@@ -3,6 +3,8 @@ HISS
 
 \#Hashtag Image Sharing Service.
 
+[![Build Status](https://travis-ci.com/gvkalra/hashmail.svg?token=xgpkznVJFz29W4dWKxyN&branch=master)](https://travis-ci.com/gvkalra/hashmail)
+
 Setting up development environment
 --------------------------------------------
 **Install Dependencies**

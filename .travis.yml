@@ -1,0 +1,8 @@
+language: python
+deploy:
+  provider: heroku
+  api_key: "02ef08e2-9ddc-45aa-b3d4-4795d364dcb4"
+  run:
+    - "python manage.py migrate"
+    - "python manage.py migrate --run-syncdb"
+script: "pwd"
