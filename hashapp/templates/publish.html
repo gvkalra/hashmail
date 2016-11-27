@@ -53,6 +53,7 @@
 		<form action="{% url 'hashapp.views.publish_result' %}" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
 			{{ image_form }}
+            <button type="submit">Save</button>
 		</form>
 
 	<div class="status">
