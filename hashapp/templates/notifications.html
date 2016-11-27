@@ -5,22 +5,31 @@
 	{% include "navbar.html" %}
 	<div class="content">
 	<h1> View your Notifications </h1>
-	<img src="https://res.cloudinary.com/hyiclya8s/image/upload/v1480061044/vsirdifmsua0osv6987z.jpg"/>
+	<div class="row" id="notifications">
+		  <!--placeholder-->
 	</div>
-	
-	<div class="notification"></div>
-	
 	<script>
 
-        var pusher = new Pusher('{{ app_key }}');
+	// Enable pusher logging - don't include this in production
+	Pusher.logToConsole = true;
 
-        var notificationsChannel = pusher.subscribe('{{ channel_name }}');
+	var pusher = new Pusher('a0e7e26bf61d7b3849c4', {
+		encrypted: true
+	});
 
-        notificationsChannel.bind('{{ event_name }}', function(notification){
-            var message = notification.message;
-            $('div.notification').text(message);
-        });
+	var channel = pusher.subscribe('{{ user.username }}');
+	channel.bind('new_image', function(data) {
+	jQuery('<img/>', {
+		id: data.id,
+		href: data.url,
+		title: data.hashtags,
+		rel: data.date,
+		author: data.author,
+		text: data.hashtags,
+		class: "img-responsive"
+	}).appendTo('#notifications');
+	});
 
-    </script>
+	</script>
 	
 {% endblock %}
