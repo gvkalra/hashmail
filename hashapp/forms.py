@@ -26,5 +26,7 @@ class RegistrationForm(UserCreationForm):
 		return user
 
 class ImageDirectForm(forms.Form):
+	class Meta:
+		model = ImageModel
 	image = CloudinaryJsFileField()
 	tags = forms.CharField(required=True)
