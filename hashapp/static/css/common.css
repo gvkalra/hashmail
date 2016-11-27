@@ -1,8 +1,12 @@
-/*!
- * Start Bootstrap - Creative Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
+
+
+.center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
 
 html,
 body {
@@ -12,7 +16,6 @@ body {
     font-family: 'Montserrat', Helvetica, sans-serif;
     background-color: #ECECEC
 }
-
 
 hr {
     margin: 0;
@@ -61,10 +64,6 @@ p {
 .page-header p {
     padding: 0;
     margin: 0;
-    text-align: center;
-}
-
-.center {
     text-align: center;
 }
 
@@ -127,6 +126,12 @@ p {
     background-color: #F4F4F4;
 }
 
+.button-white:disabled {
+    color: #acacac;
+    text-decoration: none;
+    background-color: #686868;
+}
+
 .button-lightgreen {
     color: black;
     text-decoration: none;
@@ -138,6 +143,12 @@ p {
     background-color: #EEFAF0;
 }
 
+.button-lightgreen:disabled {
+    color: #acacac;
+    text-decoration: none;
+    background-color: #686868;
+}
+
 .button-green {
     color: white;
     text-decoration: none;
@@ -147,6 +158,12 @@ p {
 .button-green:hover {
     color: white;
     background-color: #4D936F;
+}
+
+.button-green:disabled {
+    color: #acacac;
+    text-decoration: none;
+    background-color: #686868;
 }
 
 .btn-xlg {
