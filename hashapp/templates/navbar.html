@@ -1,11 +1,27 @@
 {% if user.is_authenticated %}
-	<h1>Welcome, {{ user.username }}</h1>
-	<p><a href="/notifications">View Notifications</a></p>
-	<p><a href="/publish">Publish Images</a></p>
-	<p><a href="/subscribe">Edit Subscriptions</a></p>
-	<p><a href="{% url 'auth_logout' %}?next=/">Logout</a></p>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Welcome, {{ user.username }}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/notifications"> View </a></li>
+      <li><a href="/publish"> Publish </a></li> 
+      <li><a href="/subscribe"> Subscriptions </a></li> 
+    </ul>
+    <a href="{% url 'auth_logout' %}?next=/" class="btn btn-success navbar-btn button-green">Sign out</a>
+  </div>
+</nav>
+<hr/>
 {% else %}
-	<h1>Welcome to HISS</h1>
-	<p><a href="/accounts/login">Login</a></p>
-	<p><a href="/signup">Sign-Up</a></p>
+<div class="container">
+  <div class="jumbotron">
+    <div class="welcome">
+      <h1>Welcome to HISS</h1>
+      <p><a class="button-white btn-xxlg" href="/accounts/login">Sign in</a></p>
+      <p><a class="button-green btn-xxlg" href="/signup">Sign up</a></p>
+    </div>
+  </div>
+</div>
 {% endif %}
