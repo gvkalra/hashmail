@@ -42,7 +42,8 @@ def edit_subscription(request):
 
 @login_required
 def view_notifications(request):
-	return render(request, 'notifications.html')
+                 'event_name' : "new_image"}
+    return render(request, 'notifications.html', arguments)
 
 @login_required
 @csrf_exempt
