@@ -7,4 +7,20 @@
 	<h1> View your Notifications </h1>
 	<img src="https://res.cloudinary.com/hyiclya8s/image/upload/v1480061044/vsirdifmsua0osv6987z.jpg"/>
 	</div>
+	
+	<div class="notification"></div>
+	
+	<script>
+
+        var pusher = new Pusher('{{ app_key }}');
+
+        var notificationsChannel = pusher.subscribe('{{ channel_name }}');
+
+        notificationsChannel.bind('{{ event_name }}', function(notification){
+            var message = notification.message;
+            $('div.notification').text(message);
+        });
+
+    </script>
+	
 {% endblock %}

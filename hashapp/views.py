@@ -42,7 +42,9 @@ def edit_subscription(request):
 
 @login_required
 def view_notifications(request):
-	return render(request, 'notifications.html')
+    arguments = {'app_key' : '274247', 'channel_name' : request.user.get_user_name(), \
+                 'event_name' : "new_image"}
+    return render(request, 'notifications.html', arguments)
 
 @login_required
 @csrf_exempt
