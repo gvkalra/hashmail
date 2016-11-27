@@ -1,11 +1,13 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import User as UserModel
 from django.utils import timezone as timezone
+
 
 
 class HashTagModel(models.Model):
     tag = models.CharField(max_length=30, unique=True)
-    
+    users= models.ManyToManyField(UserModel)
     def __str__(self):
         return self.tag
 
@@ -13,6 +15,7 @@ class HashTagModel(models.Model):
 class ImageModel(models.Model):
     image = CloudinaryField('image')
     tags = models.ManyToManyField(HashTagModel)
+    users = models.ManyToManyField(UserModel)
     date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=timezone.now(), null=True)
     
