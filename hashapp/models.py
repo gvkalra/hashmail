@@ -1,6 +1,6 @@
 from django.db import models
-# from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.utils import timezone as timezone
 
 
 class HashTagModel(models.Model):
@@ -14,7 +14,17 @@ class ImageModel(models.Model):
     image = CloudinaryField('image')
     tags = models.ManyToManyField(HashTagModel)
     date = models.DateTimeField(auto_now_add=True)
+    published_date = models.DateTimeField(blank=timezone.now(), null=True)
     
+    
+    
+    #
+    #  publish() will be used when the photo is sent to Rabbit MQ
+    #
+    
+    def publish(self):
+        self.published_date = timezone.now()
+        
     def __unicode__(self):
         try:
             public_id = self.image.public_id
@@ -22,6 +32,8 @@ class ImageModel(models.Model):
             public_id = ''
         return "Photo <%s:%s>" % (self.title, public_id)
 
+    def __str__(self):
+        return "%s - %s",self.image.public_id, self.tags
 
 """
 class UserProfile(models.Model):
