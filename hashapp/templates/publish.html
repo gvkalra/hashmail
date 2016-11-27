@@ -3,20 +3,20 @@
 {% load cloudinary %}
 
 {% block head %}
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	{% cloudinary_includes %}
-	{% cloudinary_js_config %}
+  {% cloudinary_includes %}
+  {% cloudinary_js_config %}
 
-	<script>
-	function prettydump(obj) {
+  <script>
+  function prettydump(obj) {
     ret = ""
     $.each(obj, function(key, value) {
       ret += "<tr><td>" + key + "</td><td>" + value + "</td></tr>";
     });
     return ret;
   }
-  $(function () {
-    $('#direct_upload input[type="file"]')
+
+  /*$('#direct_upload').submit(function() {
+    this
     .cloudinary_fileupload({
       dropZone: '#direct_upload',
       start: function () {
@@ -40,24 +40,85 @@
         ));
         $('.uploaded_info_holder').append(info);
     });
+    return false;
+  });*/
+
+  $(function () {
+    $('#progress').hide();
+    $('#direct_upload input[type="file"]')
+    .cloudinary_fileupload({
+      disableImageResize: false,
+      imageMaxWidth: 1024,
+      imageMaxHeight: 1024,
+      maxFileSize: 10000000,
+      acceptedFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i,
+      dropZone: '#direct_upload',
+      start: function () {
+        $('#publish').hide(); $('#progress').show();
+        $('#progressbar').text('Starting direct upload...').css('width','25%');
+      },
+      progress: function () {
+        $('#progressbar').text('Uploading...').css('width','50%');
+      },
+    })
+    .on('cloudinarydone', function (e, data) {
+        $('#progressbar').text('Updating backend...').css('width','75%');
+        $.post(this.form.action, $(this.form).serialize()).always(function (result, status, jqxhr) {
+          $('#progressbar').text(result.errors ? JSON.stringify(result.errors) : status).css('width','100%');
+        });
+        var info = $('<div class="uploaded_info"/>');
+        $(info).append($('<div class="data"/>').append(prettydump(data.result)));
+        $(info).append($('<div class="image"/>').append(
+           $.cloudinary.image(data.result.public_id, {
+           format: data.result.format, width: 150, height: 150, crop: "fill"
+           })
+        ));
+        $('.uploaded_info_holder').append(info);
+    });
   });
   </script>
 {% endblock %}
 
 {% block content %}
 	{% include "navbar.html" %}
-	<div class="content">
+	<div id='direct_upload' class="content">
 	<h1> Publish your Image </h1>
 
-	<div id='direct_upload'>
-		<form action="{% url 'hashapp.views.publish_result' %}" method="post" enctype="multipart/form-data">
+	<div>
+		<form method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-			{{ image_form }}
+			<table class="form-group table"><tbody>
+			    <tr>
+				<td><p>{{ image_form.image.label_tag }}</p></td>
+				<td><p>{{ image_form.image }}</p></td>
+			    </tr>
+			    <tr>
+				<td colspan="2">{{ image_form.image.help_text }}</td>
+			    </tr>
+			    <tr>
+				<td colspan="2">{{ image_form.image.errors.as_text }}</td>
+			    </tr>
+			    <tr>
+				<td><p>{{ image_form.tags.label_tag }}</p></td>
+				<td><p>{{ image_form.tags }}</p></td>
+			    </tr>
+			    <tr>
+				<td colspan="2">{{ image_form.tags.help_text }}</td>
+			    </tr>
+			    <tr>
+				<td colspan="2">{{ image_form.tags.errors.as_text }}</td>
+			    </tr>
+	    		</tbody></table>
+			<p id="publish" class="center"><input type="submit" class="btn button-green btn-xlg" value="Publish"/></p>
 		</form>
 
-	<div class="status">
-		<h2>Status</h2>
-		<span class="status_value">Idle</span>
+	<div>
+		<div id="progress" class="progress" >
+			<div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar">
+			</div>
+		</div>
+		<div class="uploaded_info_holder">
+		</div>
 	</div>
 	</div>
 {% endblock %}
