@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Hashmail - Hashtag Image Sharing Service</title>
-{% block head %}
-{% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/common.css' %}" rel="stylesheet" />
+    <title>Hashmail - Hashtag Image Sharing Service</title>
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
-
-{% block content %}
-{% endblock %}
-
+    <div class="page-header">
+        <p><img src="{% static 'img/logo.png' %}"/></p>
+    </div>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
