@@ -76,8 +76,7 @@ p {
 }
 
 .welcome p {
-    margin: 30px;
-    margin-bottom: 35px;
+    margin: 30px 30px 35px;
 }
 
 .navbar-default {
@@ -88,6 +87,10 @@ p {
 
 .content {
     padding: 5px 10px 5px 10px;
+}
+
+.form-group p {
+    margin: 0;
 }
 
 .login {
@@ -103,6 +106,10 @@ p {
     text-align: left;
 }
 
+.thumbnail p {
+    margin: 0;
+}
+
 .signup p {
     margin: 0;
 }
@@ -110,10 +117,13 @@ p {
     margin: 0;
 }
 
+.table tbody tr td {
+    vertical-align: middle;
+}
+
 .form-control {
     max-width: 750px;
     display: inline;
-    margin: 10px;
 }
 
 .progress {

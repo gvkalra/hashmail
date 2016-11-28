@@ -2,34 +2,41 @@
 {% load staticfiles %}
 
 {% block content %}
-	{% include "navbar.html" %}
-	<div class="content">
-	<h1> View your Notifications </h1>
-	<div class="row" id="notifications">
-		  <!--placeholder-->
-	</div>
-	<script>
+{% include "navbar.html" %}
+<script>
+    $(function () {
+        function addImage(id, url, hashtags) {
+            $('<div class="col-md-3"><div class="thumbnail"><a href=\"' + url +
+                '\"><img src=\"' + url + '\" style="width:100%"><div class="caption"><p>' + hashtags +
+                '</p></div></a></div></div>').appendTo('#notifications');
+        }
 
-	// Enable pusher logging - don't include this in production
-	Pusher.logToConsole = true;
+         // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
 
-	var pusher = new Pusher('a0e7e26bf61d7b3849c4', {
-		encrypted: true
-	});
+        var pusher = new Pusher('a0e7e26bf61d7b3849c4', {
+            encrypted: true
+        });
 
-	var channel = pusher.subscribe('{{ user.username }}');
-	channel.bind('new_image', function(data) {
-	jQuery('<img/>', {
-		id: data.id,
-		href: data.url,
-		title: data.hashtags,
-		rel: data.date,
-		author: data.author,
-		text: data.hashtags,
-		class: "img-responsive"
-	}).appendTo('#notifications');
-	});
+        var channel = pusher.subscribe('{{ user.username }}');
+        channel.bind('new_image', function (data) {
+            addImage(data.id, data.url, data.hashtags);
+        });
 
-	</script>
-	
+        $('#test').click(function () {
+            addImage("axlajgd3778phkmqvir7",
+                "https://res.cloudinary.com/hyiclya8s/image/upload/v1480251676/axlajgd3778phkmqvir7.gif",
+                "#test #test2");
+        });
+    });
+</script>
+<div class="content">
+    <h1> View your Notifications </h1>
+    <div class="content">
+    <button id="test">Click me to add an image</button>
+        <div class="row" id="notifications">
+            <!--placeholder-->
+        </div>
+    </div>
+</div>
 {% endblock %}
