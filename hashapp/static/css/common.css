@@ -1,5 +1,4 @@
 
-
 .center {
     text-align: center;
 }
@@ -67,6 +66,11 @@ p {
     text-align: center;
 }
 
+.logo {
+    width: 118px;
+    height: 46px;
+}
+
 .welcome {
     text-align: center;
 }
@@ -106,6 +110,12 @@ p {
     margin: 0;
 }
 
+.form-control {
+    max-width: 750px;
+    display: inline;
+    margin: 10px;
+}
+
 .progress {
     height: 30px;
     max-height: 30px;
@@ -135,12 +145,12 @@ p {
 .button-lightgreen {
     color: black;
     text-decoration: none;
-    background-color: #F0FFF4;
+    background-color: #a7e0bd;
 }
 
 .button-lightgreen:hover {
     color: black;
-    background-color: #EEFAF0;
+    background-color: #8ebf9e;
 }
 
 .button-lightgreen:disabled {
