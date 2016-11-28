@@ -16,7 +16,7 @@
         $('#publishbutton').prop('disabled', true);
         $('.imagefield').hide();
         tagsField.keypress(function() {
-            $('#publishbutton').prop('disabled', !/((\s*)(#[a-z\d-]+))+/.test(tagsField.val()));
+            $('#publishbutton').prop('disabled', !/^((\s*)(#[a-z\d-]+)(,?))+$/.test(tagsField.val()));
         });
 
         $('#publishbutton').click(function(event) {
@@ -63,7 +63,7 @@
                 <tbody>
                 <tr class="tagsfield">
                     <td><p>{{ image_form.tags.label_tag }}</p></td>
-                    <td><p id="tagsfield">{{ image_form.tags }}</p></td>
+                    <td><p id="tagsfield" class="inputparent">{{ image_form.tags }}</p></td>
                 </tr>
                 <tr class="tagsfield">
                     <td colspan="2">{{ image_form.tags.help_text }}</td>
