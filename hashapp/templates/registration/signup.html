@@ -15,7 +15,7 @@
 	<td colspan="2">{{ form.username.help_text }}</td>
     </tr>
     {% endif %}
-    {% if form.username.errors and form.username.errors.strip %}
+    {% if form.username.errors.as_text and form.username.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.username.errors.as_text }}</td>
     </tr>
@@ -29,7 +29,7 @@
 	<td colspan="2">{{ form.email.help_text }}</td>
     </tr>
     {% endif %}
-    {% if form.email.errors and form.email.errors.strip %}
+    {% if form.email.errors.as_text and form.email.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.email.errors.as_text }}</td>
     </tr>
@@ -43,7 +43,7 @@
 	<td colspan="2">{{ form.password1.help_text }}</td>
     </tr>
     {% endif %}
-    {% if form.password1.errors and form.password1.errors.strip %}
+    {% if form.password1.errors.as_text and form.password1.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.password1.errors.as_text }}</td>
     </tr>
@@ -57,7 +57,7 @@
 	<td colspan="2">{{ form.password2.help_text }}</td>
     </tr>
     {% endif %}
-    {% if form.password2.errors and form.password2.errors.strip %}
+    {% if form.password2.as_text.errors.as_text and form.password2.as_text.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.password2.errors.as_text }}</td>
     </tr>
@@ -71,7 +71,7 @@
 	<td colspan="2">{{ form.first_name.help_text }}</td>
     </tr>
     {% endif %}
-    {% if form.first_name.errors and form.first_name.errors.strip %}
+    {% if form.first_name.as_text.errors.as_text and form.first_name.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.first_name.errors.as_text }}</td>
     </tr>
@@ -85,7 +85,7 @@
 	<td colspan="2">{{ form.last_name.help_text }}</td>
     </tr>
     {% endif %}
-    {% if form.last_name.errors and form.last_name.errors.strip %}
+    {% if form.last_name.errors.as_text and form.last_name.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.last_name.errors.as_text }}</td>
     </tr>
