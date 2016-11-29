@@ -5,10 +5,12 @@
 {% include "navbar.html" %}
 <script>
     $(function () {
-        function addImage(id, url, hashtags) {
-            $('<div class="col-md-3"><div class="thumbnail"><a href=\"' + url +
-                '\"><img src=\"' + url + '\" style="width:100%"><div class="caption"><p>' + hashtags +
-                '</p></div></a></div></div>').appendTo('#notifications');
+        function addImage(data) {
+            $('<div class="col-md-3"><div class="thumbnail"><a href=\"' + data.url +
+                '\"><img src=\"' + data.url + '\" style="width:100%"></a>' +
+                '<div><p class="text-muted text-right small">' + data.published_date + '' +
+                '</p></div><div class="caption"><p>' + data.hashtags +
+                '</p></div></div></div>').appendTo('#notifications');
         }
 
          // Enable pusher logging - don't include this in production
@@ -20,13 +22,25 @@
 
         var channel = pusher.subscribe('{{ user.username }}');
         channel.bind('new_image', function (data) {
-            addImage(data.id, data.url, data.hashtags);
+            var datePublished = new Date(data.published_date);
+            data.published_date = datePublished.toTimeString().slice(0, 5) + ' ' + datePublished.toDateString();
+            addImage(data);
         });
 
         $('#test').click(function () {
-            addImage("axlajgd3778phkmqvir7",
-                "https://res.cloudinary.com/hyiclya8s/image/upload/v1480251676/axlajgd3778phkmqvir7.gif",
-                "#test #test2");
+            var now = new Date(Date.now());
+            addImage({
+                id: "axlajgd3778phkmqvir7",
+                url: "https://res.cloudinary.com/hyiclya8s/image/upload/v1480251676/axlajgd3778phkmqvir7.gif",
+                published_date: now.toTimeString().slice(0, 5) + ' ' + now.toDateString(),
+                hashtags: "#test #test2"
+            });
+            addImage({
+                id: "olwxj38yzlyeoy9igtyi",
+                url: "https://res.cloudinary.com/hyiclya8s/image/upload/v1480251676/olwxj38yzlyeoy9igtyi.gif",
+                published_date: now.toTimeString().slice(0, 5) + ' ' + now.toDateString(),
+                hashtags: "#cyberpunk"
+            });
         });
     });
 </script>
