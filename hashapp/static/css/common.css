@@ -203,3 +203,7 @@ p {
     background: #222;
 }
 
+.carousel-control {
+  padding-top:10%;
+  width:5%;
+}
