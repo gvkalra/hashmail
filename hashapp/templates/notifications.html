@@ -2,34 +2,67 @@
 {% load staticfiles %}
 
 {% block content %}
-	{% include "navbar.html" %}
-	<div class="content">
-	<h1> View your Notifications </h1>
-	<div class="row" id="notifications">
-		  <!--placeholder-->
-	</div>
-	<script>
+{% include "navbar.html" %}
+<script>
+    $(function () {
+        function addImage(data) {
+            $("<div class='col-lg-3 col-md-4 col-xs-6'> \
+                    <div class='thumbnail'> \
+                        <a href='" + data.url + "'> \
+                            <img src='" + data.url + "' class='img-responsive'> \
+                        </a> \
+                        <div> \
+                            <p class='text-muted text-right small'>" + data.published_date + "</p> \
+                        </div> \
+                        <div class='caption'> \
+                            <p>" + data.hashtags + "</p> \
+                        </div> \
+                    </div> \
+                </div>").appendTo("#notifications"
+            );
+        }
 
-	// Enable pusher logging - don't include this in production
-	Pusher.logToConsole = true;
+         // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
 
-	var pusher = new Pusher('a0e7e26bf61d7b3849c4', {
-		encrypted: true
-	});
+        var pusher = new Pusher('a0e7e26bf61d7b3849c4', {
+            encrypted: true
+        });
 
-	var channel = pusher.subscribe('{{ user.username }}');
-	channel.bind('new_image', function(data) {
-	jQuery('<img/>', {
-		id: data.id,
-		href: data.url,
-		title: data.hashtags,
-		rel: data.date,
-		author: data.author,
-		text: data.hashtags,
-		class: "img-responsive"
-	}).appendTo('#notifications');
-	});
+        var channel = pusher.subscribe('{{ user.username }}');
+        channel.bind('new_image', function (data) {
+            var datePublished = new Date(data.published_date);
+            data.published_date = datePublished.toTimeString().slice(0, 5) + ' ' + datePublished.toDateString();
+            addImage(data);
+        });
 
-	</script>
-	
+        $('#test').click(function () {
+            var now = new Date(Date.now());
+            addImage({
+                id: "axlajgd3778phkmqvir7",
+                url: "https://res.cloudinary.com/hyiclya8s/image/upload/w_400,h_300/axlajgd3778phkmqvir7.gif",
+                published_date: now.toTimeString().slice(0, 5) + ' ' + now.toDateString(),
+                hashtags: "#test #test2"
+            });
+            addImage({
+                id: "olwxj38yzlyeoy9igtyi",
+                url: "https://res.cloudinary.com/hyiclya8s/image/upload/w_400,h_300/olwxj38yzlyeoy9igtyi.gif",
+                published_date: now.toTimeString().slice(0, 5) + ' ' + now.toDateString(),
+                hashtags: "#cyberpunk"
+            });
+        });
+    });
+</script>
+
+
+<div class="content">
+    <h1> View your Notifications </h1>
+    <button id="test">Click me to add an image</button>
+    <!-- Container -->
+    <div class="container">
+        <div class="row" id="notifications">
+        <!-- Placeholder -->
+        </div>
+    </div>
+</div>
 {% endblock %}

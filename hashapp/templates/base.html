@@ -16,12 +16,15 @@
 
     <link type="text/css" href="{% static 'css/common.css' %}" rel="stylesheet" />
     <title>Hashmail - Hashtag Image Sharing Service</title>
+
+    <script src="{% static 'js/common.js' %}"></script>
+
     {% block head %}
     {% endblock %}
 </head>
 <body>
     <div class="page-header">
-        <p><a href="/"><img src="{% static 'img/logo.png' %}"/></a></p>
+        <p><a href="/"><img class="logo" src="{% static 'img/logo.png' %}"/></a></p>
     </div>
     {% block content %}
     {% endblock %}
