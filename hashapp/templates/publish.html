@@ -16,8 +16,9 @@
         $('#publishbutton').prop('disabled', true);
         $('.imagefield').hide();
         tagsField.keyup(function() {
-            $('#publishbutton').prop('disabled', !/^((\s*)(#[a-z\d-]+)(,?))+$/.test(tagsField.val()));
+            $('#publishbutton').prop('disabled', !/^((\s*)(#[a-z\d-]{1,30})(,?)(\s*))+$/.test(tagsField.val()));
         });
+        $('.imageinputparent').children().addClass("btn button-white");
 
         $('#publishbutton').click(function(event) {
             $('#publishbutton').text('Select an image');
@@ -77,7 +78,7 @@
                 {% endif %}
                 <tr class="imagefield">
                     <td><p>{{ image_form.image.label_tag }}</p></td>
-                    <td><p>{{ image_form.image }}</p></td>
+                    <td><p class="imageinputparent">{{ image_form.image }}</p></td>
                 </tr>
                 {% if image_form.image.help_text and image_form.image.help_text.strip %}
                 <tr class="imagefield">
@@ -95,7 +96,7 @@
                 <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar">
                 </div>
             </div>
-            <p id="publish" class="center">
+            <p id="publish" class="text-center">
                 <button id="publishbutton" type="submit" class="btn button-green btn-xlg"></button>
             </p>
         </form>
