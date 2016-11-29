@@ -1,6 +1,75 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block head %}
+	<script>
+		$(document).ready(function() {
+			$('#myCarousel').carousel({
+			interval: 3000 //3sec
+			})
+		});
+	</script>
+{% endblock %}
+
 {% block content %}
 	{% include "navbar.html" %}
+	{% if user.is_authenticated %}
+		# TODO: User Dashboard - Image of the day?
+	{% else %}
+	<div class="container">
+    <div class="col-md-12">
+            <div id="myCarousel" class="carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/1.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/2.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/3.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/4.jpg' %}" class="img-responsive"></a>
+                            </div>
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/5.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/6.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/7.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/8.jpg' %}" class="img-responsive"></a>
+                            </div>
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/9.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/10.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/11.jpg' %}" class="img-responsive"></a>
+                            </div>
+                            <div class="col-sm-3"><a href="#x" class="thumbnail"><img src="{% static 'img/carousel/12.jpg' %}" class="img-responsive"></a>
+                            </div>
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <!--/item-->
+                </div>
+                <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            </div>
+            <!--/myCarousel-->
+    </div>
+	</div>
+	{% endif %}
 {% endblock %}
