@@ -26,7 +26,7 @@ class ExampleConsumer(object):
     """
     EXCHANGE = 'message'
     EXCHANGE_TYPE = 'topic'
-    QUEUE = 'text'
+    QUEUE = 'timeline'
     ROUTING_KEY = 'example.text'
 
     def __init__(self, amqp_url):
