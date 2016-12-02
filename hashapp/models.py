@@ -7,15 +7,15 @@ from django.utils import timezone as timezone
 
 class HashTagModel(models.Model):
     tag = models.CharField(max_length=30, unique=True)
-    users= models.ManyToManyField(UserModel)
+    hashtag_subscription = models.ManyToManyField(UserModel)
     def __str__(self):
         return self.tag
 
 
 class ImageModel(models.Model):
     image = CloudinaryField('image')
-    tags = models.ManyToManyField(HashTagModel)
-    users = models.ManyToManyField(UserModel)
+    image_tags = models.ManyToManyField(HashTagModel)
+    image_author = models.ManyToManyField(UserModel)
     date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=timezone.now(), null=True)
     
@@ -38,9 +38,3 @@ class ImageModel(models.Model):
     def __str__(self):
         return "%s - %s",self.image.public_id, self.tags
 
-"""
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    images = models.ManyToManyField(ImageModel)
-    tags = models.ManyToManyField(HashTagModel)
-"""
