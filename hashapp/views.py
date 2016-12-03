@@ -38,7 +38,8 @@ def publish_image(request):
 
 @login_required
 def edit_subscription(request):
-	return render(request, 'subscribe.html')
+    context = dict(subscription_form = SubscriptionForm())
+    return render(request, 'subscribe.html', context)
 
 @login_required
 def view_notifications(request):
