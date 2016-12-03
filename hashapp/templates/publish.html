@@ -9,26 +9,22 @@
 <script>
 
     $(function () {
-        var tagsField = $('#tagsfield').children();
+        var tagsField = $('#direct_upload input[type="text"]');
 
         $('#progress').hide();
-        $('#publishbutton').text('Next');
         $('#publishbutton').prop('disabled', true);
         $('.imagefield').hide();
         tagsField.keyup(function() {
             $('#publishbutton').prop('disabled', !/^((\s*)(#[a-z\d-]{1,30})(,?)(\s*))+$/.test(tagsField.val()));
         });
         $('.imageinputparent').children().addClass("btn button-white");
-
         $('#publishbutton').click(function(event) {
             $('#publishbutton').text('Select an image');
             $('#publishbutton').prop('disabled', true);
-            $('.tagsfield').prop('disabled', true);
-            $('#tagsfield').children().prop('disabled', true);
+            tagsField.prop('readonly', true);
             $('.imagefield').show();
             event.preventDefault();
         });
-
         $('#direct_upload input[type="file"]')
             .cloudinary_fileupload({
                 dropZone: '#direct_upload',
@@ -44,7 +40,6 @@
                 $('#progressbar').text('Updating backend...').css('width', '75%');
                 $.post(this.form.action, $(this.form).serialize()).always(function (result, status, jqxhr) {
                     $('#progressbar').text(result.errors ? JSON.stringify(result.errors) : status).css('width', '100%');
-
                     $('#publishbutton').text('Continue').unbind('click').prop('disabled', false);
                 });
             });
@@ -62,17 +57,17 @@
             {% csrf_token %}
             <table class="form-group table">
                 <tbody>
-                <tr class="tagsfield">
+                <tr>
                     <td><p>{{ image_form.tags.label_tag }}</p></td>
-                    <td><p id="tagsfield" class="inputparent">{{ image_form.tags }}</p></td>
+                    <td><p id="tagsfieldparent" class="inputparent">{{ image_form.tags }}</p></td>
                 </tr>
                 {% if image_form.tags.help_text and image_form.tags.help_text.strip %}
-                <tr class="tagsfield">
+                <tr>
                     <td colspan="2">{{ image_form.tags.help_text }}</td>
                 </tr>
                 {% endif %}
                 {% if image_form.tags.errors.as_text and image_form.tags.errors.as_text.strip %}
-                <tr class="tagsfield">
+                <tr>
                     <td colspan="2">{{ image_form.tags.errors.as_text }}</td>
                 </tr>
                 {% endif %}
@@ -97,7 +92,7 @@
                 </div>
             </div>
             <p id="publish" class="text-center">
-                <button id="publishbutton" type="submit" class="btn button-green btn-xlg"></button>
+                <button id="publishbutton" type="submit" class="btn button-green btn-xlg">Next</button>
             </p>
         </form>
     </div>
