@@ -26,6 +26,22 @@ SECRET_KEY = "2wds5ae=wy13cleixt10fy6e0rdi%zz%%ela@syz+6xhhu@e7$"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
+
 # Application definition
 
 INSTALLED_APPS = [

@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('image', cloudinary.models.CloudinaryField(max_length=255, verbose_name=b'image')),
                 ('date', models.DateTimeField(auto_now_add=True)),
-                ('published_date', models.DateTimeField(blank=datetime.datetime(2016, 12, 3, 8, 14, 52, 878465, tzinfo=utc), null=True)),
+                ('published_date', models.DateTimeField(blank=datetime.datetime(2016, 12, 3, 8, 22, 39, 410155, tzinfo=utc), null=True)),
                 ('image_author', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
                 ('image_tags', models.ManyToManyField(to='hashapp.HashTagModel')),
             ],
