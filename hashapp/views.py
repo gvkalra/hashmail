@@ -49,7 +49,6 @@ def view_notifications(request):
 def publish_result(request):
     form = ImageDirectForm(request.POST)
     my_dictionary = {}
-    
     if form.is_valid():
         data = form.cleaned_data
         tags = data['tags'].split(' ')
@@ -60,7 +59,7 @@ def publish_result(request):
         if len(tags) > 0:
             for tag in tags:
                 obj, created = HashTagModel.objects.get_or_create(tag=tag)
-                saved_image.tags.add(obj)
+                saved_image.image_tags.add(obj)
                 saved_image.save()
         
         my_dictionary.update(dict(image=image))
