@@ -19,8 +19,6 @@ class ImageModel(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=timezone.now(), null=True)
     
-    
-    
     #
     #  publish() will be used when the photo is sent to Rabbit MQ
     #
