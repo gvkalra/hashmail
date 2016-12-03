@@ -30,3 +30,6 @@ class ImageDirectForm(forms.Form):
 		model = ImageModel
 	image = CloudinaryJsFileField()
 	tags = forms.CharField(required=True)
+
+class SubscriptionForm(forms.Form):
+	tags = forms.CharField(required=True)
