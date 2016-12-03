@@ -1,8 +1,6 @@
-/*!
- * Start Bootstrap - Creative Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
+.hidden {
+    display: none;
+}
 
 html,
 body {
@@ -12,7 +10,6 @@ body {
     font-family: 'Montserrat', Helvetica, sans-serif;
     background-color: #ECECEC
 }
-
 
 hr {
     margin: 0;
@@ -64,8 +61,9 @@ p {
     text-align: center;
 }
 
-.center {
-    text-align: center;
+.logo {
+    width: 118px;
+    height: 46px;
 }
 
 .welcome {
@@ -73,8 +71,7 @@ p {
 }
 
 .welcome p {
-    margin: 30px;
-    margin-bottom: 35px;
+    margin: 30px 30px 35px;
 }
 
 .navbar-default {
@@ -85,6 +82,10 @@ p {
 
 .content {
     padding: 5px 10px 5px 10px;
+}
+
+.form-group p {
+    margin: 0;
 }
 
 .login {
@@ -100,11 +101,24 @@ p {
     text-align: left;
 }
 
+.thumbnail p {
+    margin: 0;
+}
+
 .signup p {
     margin: 0;
 }
 .signup p label {
     margin: 0;
+}
+
+.table tbody tr td {
+    vertical-align: middle;
+}
+
+.form-control {
+    max-width: 750px;
+    display: inline;
 }
 
 .progress {
@@ -127,15 +141,27 @@ p {
     background-color: #F4F4F4;
 }
 
+.button-white:disabled {
+    color: #acacac;
+    text-decoration: none;
+    background-color: #686868;
+}
+
 .button-lightgreen {
     color: black;
     text-decoration: none;
-    background-color: #F0FFF4;
+    background-color: #a7e0bd;
 }
 
 .button-lightgreen:hover {
     color: black;
-    background-color: #EEFAF0;
+    background-color: #8ebf9e;
+}
+
+.button-lightgreen:disabled {
+    color: #acacac;
+    text-decoration: none;
+    background-color: #686868;
 }
 
 .button-green {
@@ -147,6 +173,12 @@ p {
 .button-green:hover {
     color: white;
     background-color: #4D936F;
+}
+
+.button-green:disabled {
+    color: #acacac;
+    text-decoration: none;
+    background-color: #686868;
 }
 
 .btn-xlg {
@@ -171,3 +203,7 @@ p {
     background: #222;
 }
 
+.carousel-control {
+  padding-top:10%;
+  width:5%;
+}

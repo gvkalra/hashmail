@@ -8,64 +8,88 @@
     <table class="form-group table"><tbody>
     <tr>
         <td><p>{{ form.username.label_tag }}</p></td>
-        <td><p>{{ form.username }}</p></td>
+        <td><p class="inputparent">{{ form.username }}</p></td>
     </tr>
+    {% if form.username.help_text and form.username.help_text.strip %}
     <tr>
 	<td colspan="2">{{ form.username.help_text }}</td>
     </tr>
+    {% endif %}
+    {% if form.username.errors.as_text and form.username.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.username.errors.as_text }}</td>
     </tr>
+    {% endif %}
     <tr>
         <td><p>{{ form.email.label_tag }}</p></td>
-        <td><p>{{ form.email }}</p></td>
+        <td><p class="inputparent">{{ form.email }}</p></td>
     </tr>
+    {% if form.email.help_text and form.email.help_text.strip %}
     <tr>
 	<td colspan="2">{{ form.email.help_text }}</td>
     </tr>
+    {% endif %}
+    {% if form.email.errors.as_text and form.email.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.email.errors.as_text }}</td>
     </tr>
+    {% endif %}
     <tr>
         <td><p>{{ form.password1.label_tag }}</p></td>
-        <td><p>{{ form.password1 }}</p></td>
+        <td><p class="inputparent">{{ form.password1 }}</p></td>
     </tr>
+    {% if form.password1.help_text and form.password1.help_text.strip %}
     <tr>
 	<td colspan="2">{{ form.password1.help_text }}</td>
     </tr>
+    {% endif %}
+    {% if form.password1.errors.as_text and form.password1.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.password1.errors.as_text }}</td>
     </tr>
+    {% endif %}
     <tr>
         <td><p>{{ form.password2.label_tag }}</p></td>
-        <td><p>{{ form.password2 }}</p></td>
+        <td><p class="inputparent">{{ form.password2 }}</p></td>
     </tr>
+    {% if form.password2.help_text and form.password2.help_text.strip %}
     <tr>
 	<td colspan="2">{{ form.password2.help_text }}</td>
     </tr>
+    {% endif %}
+    {% if form.password2.as_text.errors.as_text and form.password2.as_text.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.password2.errors.as_text }}</td>
     </tr>
+    {% endif %}
     <tr>
         <td><p>{{ form.first_name.label_tag }}</p></td>
-        <td><p>{{ form.first_name }}</p></td>
+        <td><p class="inputparent">{{ form.first_name }}</p></td>
     </tr>
+    {% if form.first_name.help_text and form.first_name.help_text.strip %}
     <tr>
 	<td colspan="2">{{ form.first_name.help_text }}</td>
     </tr>
+    {% endif %}
+    {% if form.first_name.as_text.errors.as_text and form.first_name.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.first_name.errors.as_text }}</td>
     </tr>
+    {% endif %}
     <tr>
         <td><p>{{ form.last_name.label_tag }}</p></td>
-        <td><p>{{ form.last_name }}</p></td>
+        <td><p class="inputparent">{{ form.last_name }}</p></td>
     </tr>
+    {% if form.last_name.help_text and form.last_name.help_text.strip %}
     <tr>
 	<td colspan="2">{{ form.last_name.help_text }}</td>
     </tr>
+    {% endif %}
+    {% if form.last_name.errors.as_text and form.last_name.errors.as_text.strip %}
     <tr>
 	<td colspan="2">{{ form.last_name.errors.as_text }}</td>
     </tr>
+    {% endif %}
     </tbody></table>
     <button type="submit" class="btn button-green btn-xlg">Sign up</button>
 </form>
