@@ -71,7 +71,6 @@ def publish_result(request):
     return render(request, 'published_photo.html', dictionary=my_dictionary)
 
 @login_required
-@csrf_exempt
 def subscription_result(request):
     form = SubscriptionForm(request.POST)
     my_dictionary = {}
