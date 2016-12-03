@@ -1,1 +1,1 @@
-web: gunicorn hashmail.wsgi
+web: foreman start -f Procfile.real
