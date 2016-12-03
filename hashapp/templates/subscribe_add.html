@@ -19,6 +19,9 @@
 {% include "navbar.html" %}
 <div id='newsubscription' class="content">
 	<h1> Add Subscriptions </h1>
+	{% for subscription in current_subscription %}
+		<h3> {{ subscription }} </h3>
+	{% endfor %}
 	<div>
 		<form id="the_form" method="post">
 			{% csrf_token %}
