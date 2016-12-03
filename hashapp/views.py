@@ -55,6 +55,7 @@ def publish_result(request):
         filter(None, tags)
         image = data['image']
         saved_image, is_new_image = ImageModel.objects.get_or_create(image=image)
+        saved_image.image_author.add(request.user)
         #Saving tags and adding to the Image relationship
         if len(tags) > 0:
             for tag in tags:
