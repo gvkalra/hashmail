@@ -7,7 +7,13 @@
     <ul class="nav navbar-nav">
       <li><a href="/notifications"> View </a></li>
       <li><a href="/publish"> Publish </a></li> 
-      <li><a href="/subscribe"> Subscriptions </a></li> 
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Subscriptions<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/subscribe/add">Add</a></li>
+          <li><a href="/subscribe/remove">Remove</a></li>
+        </ul>
+      </li>
     </ul>
     <a href="{% url 'auth_logout' %}?next=/" class="btn btn-success navbar-btn button-green">Sign out</a>
   </div>
