@@ -42,7 +42,7 @@ def edit_subscription(request):
 
 @login_required
 def view_notifications(request):
-	return render(request, 'notifications.html')
+    return render(request, 'notifications.html')
 
 @login_required
 @csrf_exempt
