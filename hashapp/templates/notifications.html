@@ -42,6 +42,22 @@
     <!-- Container -->
     <div class="container">
         <div class="row" id="notifications">
+        <!-- Past -->
+        {% for image in current_images %}
+        <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="thumbnail">
+                <a href = "{{ image.url }}">
+                    <img src= "{{ image.url }}" class="img-responsive">
+                </a>
+                <div>
+                    <p class="text-muted text-right small"> "{{ image.published_date }}" </p>
+                </div>
+                <div class="caption">
+                    <p> "{{ image.hashtags}}" </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
         <!-- Placeholder -->
         </div>
     </div>
