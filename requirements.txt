@@ -17,3 +17,4 @@ requests==2.12.1
 six==1.10.0
 urllib3==1.17
 whitenoise==3.2
+honcho==0.7.1
