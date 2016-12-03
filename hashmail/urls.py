@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^notifications/', hashapp.views.view_notifications),
     url(r'^publish/$', hashapp.views.publish_image),
     url(r'^publish/result', hashapp.views.publish_result, name='publish_result'),
-    url(r'^subscribe/', hashapp.views.edit_subscription),
+    url(r'^subscribe/$', hashapp.views.edit_subscription),
+    url(r'^subscribe/result', hashapp.views.subscription_result, name='subscription_result'),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', admin.site.urls),
 ]

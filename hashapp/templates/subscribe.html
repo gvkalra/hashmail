@@ -1,9 +1,44 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block head %}
+<script>
+
+    $(function () {
+        var tagsField = $('#direct_upload input[type="text"]');
+
+        $('#publishbutton').prop('disabled', true);
+        tagsField.keyup(function() {
+            $('#publishbutton').prop('disabled', !/^((\s*)(#[a-z\d-]{1,30})(,?)(\s*))+$/.test(tagsField.val()));
+        });
+        $('.imageinputparent').children().addClass("btn button-white");
+        $('#publishbutton').click(function(event) {
+            $('#the_form').submit();
+        });
+    });
+</script>
+{% endblock %}
+
 {% block content %}
 	{% include "navbar.html" %}
-	<div class="content">
+	<div id='direct_upload' class="content">
 	<h1> Manage your Subscriptions </h1>
+			<div>
+				<form id="the_form" action="{% url 'hashapp.views.subscription_result' %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<table class="form-group table">
+						<tbody>
+						<tr>
+							<td><p><label for="id_tags">Tags:</label></p></td>
+							<td><p id="tagsfieldparent" class="inputparent">
+								<input id="id_tags" name="tags" type="text" /></p></td>
+						</tr>
+						</tbody>
+					</table>
+					<p id="publish" class="text-center">
+						<button id="publishbutton" type="submit" class="btn button-green btn-xlg">Subscribe</button>
+					</p>
+				</form>
+			</div>
 	</div>
 {% endblock %}
