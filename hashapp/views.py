@@ -37,9 +37,38 @@ def publish_image(request):
     return render(request, 'publish.html', context)
 
 @login_required
-def edit_subscription(request):
-    context = dict(subscription_form = SubscriptionForm())
-    return render(request, 'subscribe.html', context)
+def add_subscription(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        subscription_form = SubscriptionForm(request.POST)
+        # check whether it's valid:
+        if subscription_form.is_valid():
+            # process the data in form.cleaned_data as required
+            tags = subscription_form.cleaned_data['tags'].split(' ')
+            filter(None, tags)
+            if len(tags) > 0:
+                for tag in tags:
+                    obj, created = HashTagModel.objects.get_or_create(tag=tag)
+                    obj.hashtag_subscription.add(request.user)
+                    obj.save()
+            # redirect to a new URL:
+            return HttpResponseRedirect('/subscribe')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        subscription_form = SubscriptionForm()
+
+    return render(request, 'subscribe_add.html',
+        {'subscription_form': subscription_form})
+
+@login_required
+def remove_subscription(request):
+    pass
+
+@login_required
+def manage_subscription(request):
+    return render(request, 'subscribe.html')
 
 @login_required
 def view_notifications(request):
@@ -69,21 +98,3 @@ def publish_result(request):
     else:
         my_dictionary.update(dict(errors = form.errors))
     return render(request, 'published_photo.html', dictionary=my_dictionary)
-
-@login_required
-def subscription_result(request):
-    form = SubscriptionForm(request.POST)
-    my_dictionary = {}
-    if form.is_valid():
-        data = form.cleaned_data
-        tags = data['tags'].split(' ')
-        filter(None, tags)
-        if len(tags) > 0:
-            for tag in tags:
-                obj, created = HashTagModel.objects.get_or_create(tag=tag)
-                obj.hashtag_subscription.add(request.user)
-                obj.save()
-        my_dictionary.update({"tags": tags})
-    else:
-        my_dictionary.update(dict(errors = form.errors))
-    return render(request, 'subscribed_hashtags.html', dictionary=my_dictionary)
