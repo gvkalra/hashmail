@@ -57,10 +57,12 @@ def add_subscription(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
+        current_subscription = HashTagModel.objects.filter(hashtag_subscription=request.user)
         subscription_form = SubscriptionForm()
 
     return render(request, 'subscribe_add.html',
-        {'subscription_form': subscription_form})
+        {'subscription_form': subscription_form,
+        'current_subscription': current_subscription})
 
 @login_required
 def remove_subscription(request):
