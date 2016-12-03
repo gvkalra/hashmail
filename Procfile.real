@@ -1,1 +1,2 @@
 web: gunicorn hashmail.wsgi
+worker: celery --app=hashmail.celery:app worker --loglevel=INFO --without-gossip --without-mingle --without-heartbeat
