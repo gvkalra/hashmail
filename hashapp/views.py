@@ -64,7 +64,33 @@ def add_subscription(request):
 
 @login_required
 def remove_subscription(request):
-    pass
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        subscription_form = SubscriptionForm(request.POST)
+        # check whether it's valid:
+        if subscription_form.is_valid():
+            # process the data in form.cleaned_data as required
+            tags = subscription_form.cleaned_data['tags'].split(' ')
+            filter(None, tags)
+            if len(tags) > 0:
+                for tag in tags:
+                    try:
+                        obj = HashTagModel.objects.get(tag=tag)
+                        obj.hashtag_subscription.remove(request.user) # only unlink
+                    except ObjectDoesNotExist:
+                        pass
+            # redirect to a new URL:
+            return HttpResponseRedirect('/subscribe')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        current_subscription = HashTagModel.objects.filter(hashtag_subscription=request.user)
+        subscription_form = SubscriptionForm()
+
+    return render(request, 'subscribe_remove.html',
+        {'subscription_form': subscription_form,
+        'current_subscription': current_subscription})
 
 @login_required
 def manage_subscription(request):
