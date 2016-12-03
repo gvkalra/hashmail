@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # greater consistency between gunicorn and `./manage.py runserver`. See:
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
+    'django_extensions',
     'django.contrib.staticfiles',
     'hashapp',
     'cloudinary',
