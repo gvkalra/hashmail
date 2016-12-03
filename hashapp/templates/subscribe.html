@@ -6,6 +6,9 @@
     <div class="container">
     <div class="welcome">
       <h1>Manage your Subscription</h1>
+      {% for subscription in current_subscription %}
+		<h3> {{ subscription }} </h3>
+      {% endfor %}
       <p><a class="button-white btn-xxlg" href="/subscribe/add">Add</a></p>
       <p><a class="button-green btn-xxlg" href="/subscribe/remove">Remove</a></p>
     </div>

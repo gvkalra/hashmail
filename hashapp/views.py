@@ -94,7 +94,8 @@ def remove_subscription(request):
 
 @login_required
 def manage_subscription(request):
-    return render(request, 'subscribe.html')
+    current_subscription = HashTagModel.objects.filter(hashtag_subscription=request.user)
+    return render(request, 'subscribe.html', {'current_subscription': current_subscription})
 
 @login_required
 def view_notifications(request):
