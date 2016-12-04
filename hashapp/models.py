@@ -43,7 +43,7 @@ class ImageModel(models.Model):
         
      
     def toJSON(self):
-        cloudinary_url = "https://res.cloudinary.com/hootddo4i/image/upload/w_400,h_300/%s" % self.image.url.split("/")[-1]
+        cloudinary_url = "https://res.cloudinary.com/hzygoy8qm/image/upload/w_400,h_300/%s" % self.image.url.split("/")[-1]
         image_tags = " ".join(self.image_tags.values_list('tag', flat=True))
         image_author = "%s" % self.image_author.values_list('username', flat=True)[0]
         date = self.date.strftime('%A, %B %d %Y at %H:%M')

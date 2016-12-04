@@ -34,7 +34,7 @@ def register_user(request):
 def view_index(request):
     try:
         img = random.choice(ImageModel.objects.all())
-        url = "https://res.cloudinary.com/hootddo4i/image/upload/w_400,h_300/%s" % img.image.url.split("/")[-1]
+        url = "https://res.cloudinary.com/hzygoy8qm/image/upload/w_400,h_300/%s" % img.image.url.split("/")[-1]
         tags = " ".join(img.image_tags.values_list('tag', flat=True))
         date = img.date.strftime('%A, %B %d %Y at %H:%M')
 
@@ -109,7 +109,7 @@ def view_notifications(request):
         my_dictionary = {}
         tags = " ".join(obj.image.image_tags.values_list('tag', flat=True))
         date = obj.image.date.strftime('%A, %B %d %Y at %H:%M')
-        url = "https://res.cloudinary.com/hootddo4i/image/upload/w_400,h_300/%s" % obj.image.image.url.split("/")[-1]
+        url = "https://res.cloudinary.com/hzygoy8qm/image/upload/w_400,h_300/%s" % obj.image.image.url.split("/")[-1]
         my_dictionary.update({"date": date, "tags": tags, "url": url})       
 
         current_images.append(my_dictionary)
