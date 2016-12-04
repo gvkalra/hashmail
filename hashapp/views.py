@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from cloudinary import CloudinaryImage
 from cloudinary.forms import cl_init_js_callbacks
-from .models import ImageModel, HashTagModel
+from .models import ImageModel, HashTagModel, TimelineModel
 
 from django.http import HttpResponse
 import json
@@ -102,7 +102,19 @@ def manage_subscription(request):
 
 @login_required
 def view_notifications(request):
-    return render(request, 'notifications.html')
+    timeline_objects = TimelineModel.objects.filter(user=request.user)
+    current_images = []
+
+    for obj in timeline_objects:
+        my_dictionary = {}
+        tags = " ".join(obj.image.image_tags.values_list('tag', flat=True))
+        date = obj.image.date.strftime('%A, %B %d %Y at %H:%M')
+        url = "https://res.cloudinary.com/hootddo4i/image/upload/w_400,h_300/%s" % obj.image.image.url.split("/")[-1]
+        my_dictionary.update({"date": date, "tags": tags, "url": url})       
+
+        current_images.append(my_dictionary)
+    return render(request, 'notifications.html',
+        {'current_images': current_images})
 
 @login_required
 @csrf_exempt

@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 from celery import shared_task
-from .models import ImageModel
+from .models import ImageModel,TimelineModel
 from pusher import Pusher
 
 pusher = Pusher(
@@ -20,4 +20,13 @@ def send_image_notification(username, image_pik):
     image_json = ImageModel.objects.get(pk=image_pik).toJSON()
     username = username
     pusher.trigger(username, u'new_image', image_json)
-    return "Send notification to user: %s with image_id: %s" % username, image_pik
+    return "Send notification to user: %s with image_id: %s" % (username, image_pik)
+
+@shared_task
+def save_on_timeline(user_obj, image_obj):
+    obj, isCreated = TimelineModel.objects.get_or_create(
+        image=image_obj,
+        user=user_obj
+    )
+    obj.save()
+    return "Save image %s to user %s 's timeline!" % (image_obj.image.url, user_obj.username)
