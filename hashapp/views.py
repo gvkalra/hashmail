@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt  
 from .forms import RegistrationForm, ImageDirectForm, SubscriptionForm
+from django.core.exceptions import ObjectDoesNotExist
 
 from cloudinary import CloudinaryImage
 from cloudinary.forms import cl_init_js_callbacks
