@@ -66,7 +66,7 @@
                     <td colspan="2">{{ image_form.tags.help_text }}</td>
                 </tr>
                 {% endif %}
-                {% if image_form.tags.errors.as_text and image_form.tags.errors.as_text.strip %}
+                {% if image_form.tags.errors.as_text %}
                 <tr>
                     <td colspan="2">{{ image_form.tags.errors.as_text }}</td>
                 </tr>
@@ -80,7 +80,7 @@
                     <td colspan="2">{{ image_form.image.help_text }}</td>
                 </tr>
                 {% endif %}
-                {% if image_form.image.errors.as_text and image_form.image.errors.as_text.strip %}
+                {% if image_form.image.errors.as_text %}
                 <tr class="imagefield">
                     <td colspan="2">{{ image_form.image.errors.as_text }}</td>
                 </tr>

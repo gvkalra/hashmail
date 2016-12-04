@@ -53,17 +53,8 @@ def add_subscription(request):
                     obj, created = HashTagModel.objects.get_or_create(tag=tag)
                     obj.hashtag_subscription.add(request.user)
                     obj.save()
-            # redirect to a new URL:
-            return HttpResponseRedirect('/subscribe')
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        current_subscription = HashTagModel.objects.filter(hashtag_subscription=request.user)
-        subscription_form = SubscriptionForm()
-
-    return render(request, 'subscribe_add.html',
-        {'subscription_form': subscription_form,
-        'current_subscription': current_subscription})
+    return HttpResponseRedirect('/subscribe')
 
 @login_required
 def remove_subscription(request):
@@ -83,22 +74,18 @@ def remove_subscription(request):
                         obj.hashtag_subscription.remove(request.user) # only unlink
                     except ObjectDoesNotExist:
                         pass
-            # redirect to a new URL:
-            return HttpResponseRedirect('/subscribe')
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        current_subscription = HashTagModel.objects.filter(hashtag_subscription=request.user)
-        subscription_form = SubscriptionForm()
-
-    return render(request, 'subscribe_remove.html',
-        {'subscription_form': subscription_form,
-        'current_subscription': current_subscription})
+    return HttpResponseRedirect('/subscribe')
 
 @login_required
 def manage_subscription(request):
+
+    subscription_form = SubscriptionForm()
     current_subscription = HashTagModel.objects.filter(hashtag_subscription=request.user)
-    return render(request, 'subscribe.html', {'current_subscription': current_subscription})
+
+    return render(request, 'subscribe.html',
+                  {'subscription_form': subscription_form,
+                   'current_subscription': current_subscription})
 
 @login_required
 def view_notifications(request):
@@ -116,7 +103,7 @@ def publish_result(request):
         image = data['image']
         saved_image, is_new_image = ImageModel.objects.get_or_create(image=image)
         saved_image.image_author.add(request.user)
-        #Saving tags and adding to the Image relationship
+        # Saving tags and adding to the Image relationship
         if len(tags) > 0:
             for tag in tags:
                 obj, created = HashTagModel.objects.get_or_create(tag=tag)
