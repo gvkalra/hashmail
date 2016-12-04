@@ -156,9 +156,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Added for HISS
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
-os.environ["CLOUDINARY_URL"]='cloudinary://193889446124356:w2zYrSQqsowK65p5Zvb-655j084@hyiclya8s'
+os.environ["CLOUDINARY_URL"]='cloudinary://215748936397327:RJLTYFF3oF6rjNZsHw_8G8PlZZw@hootddo4i'
 
-BROKER_URL = 'amqp://qnxnystc:xEz98ifaJTovW61lTEp30j8w-warcbG5@buck.rmq.cloudamqp.com/qnxnystc'
+BROKER_URL = 'amqp://isbruzfj:sKo4l6m4yqjcG1pq2d6Pd_I7H2iD-Smx@zebra.rmq.cloudamqp.com/isbruzfj'
 BROKER_POOL_LIMIT = 1 # Will decrease connection usage
 BROKER_HEARTBEAT = None # We're using TCP keep-alive instead
 BROKER_CONNECTION_TIMEOUT = 30 # May require a long timeout due to Linux DNS timeouts etc
