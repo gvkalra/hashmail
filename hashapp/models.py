@@ -54,8 +54,8 @@ class ImageModel(models.Model):
                     published_date=date))
 
 class TimelineModel(models.Model):
-    image = models.OneToManyField(ImageModel)
-    user = models.OneToManyField(UserModel)
+    image = models.ForeignKey(ImageModel)
+    user = models.ForeignKey(UserModel)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return "%s - %s:%s", self.date, self.user, self.image
