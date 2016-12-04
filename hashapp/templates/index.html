@@ -18,6 +18,7 @@
     <div class="welcome">
         <h1>Welcome, {{ user.username }}</h1>
 
+    {% if rand_image %}
         <h3>Here is a random image for you!</h3>
 
         <div class="row" id="notifications">
@@ -37,6 +38,7 @@
         </div>
 
         If you like it, why not <a href = "/publish">publish</a> one for the world!
+    {% endif %}
     </div>
     </div>
 	{% else %}
