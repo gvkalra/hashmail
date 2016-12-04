@@ -31,14 +31,17 @@ def register_user(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 def view_index(request):
-    img = random.choice(ImageModel.objects.all())
-    url = "https://res.cloudinary.com/hyiclya8s/image/upload/w_400,h_300/%s" % img.image.url.split("/")[-1]
-    tags = " ".join(img.image_tags.values_list('tag', flat=True))
-    date = img.date.strftime('%A, %B %d %Y at %H:%M')
+    try:
+        img = random.choice(ImageModel.objects.all())
+        url = "https://res.cloudinary.com/hyiclya8s/image/upload/w_400,h_300/%s" % img.image.url.split("/")[-1]
+        tags = " ".join(img.image_tags.values_list('tag', flat=True))
+        date = img.date.strftime('%A, %B %d %Y at %H:%M')
 
-    rand_image = {'url': url, 'published_date': date, 'hashtags': tags}
-    return render(request, 'index.html',
-        {'rand_image': rand_image})
+        rand_image = {'url': url, 'published_date': date, 'hashtags': tags}
+        return render(request, 'index.html',
+            {'rand_image': rand_image})
+    except:
+        return render(request, 'index.html')
 
 @login_required
 def publish_image(request):
