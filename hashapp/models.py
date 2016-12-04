@@ -36,3 +36,10 @@ class ImageModel(models.Model):
     def __str__(self):
         return "%s - %s",self.image.public_id, self.tags
 
+
+class TimelineModel(models.Model):
+    image = models.OneToManyField(ImageModel)
+    user = models.OneToManyField(UserModel)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return "%s - %s:%s", self.date, self.user, self.image
