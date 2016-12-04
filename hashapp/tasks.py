@@ -29,4 +29,4 @@ def save_on_timeline(user_obj, image_obj):
         user=user_obj
     )
     obj.save()
-    return "Save image %s to user %s 's timeline!" % (image_pik, user_pik)
+    return "Save image %s to user %s 's timeline!" % (image_obj.image.url, user_obj.username)
