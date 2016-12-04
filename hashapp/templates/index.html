@@ -14,7 +14,31 @@
 {% block content %}
 	{% include "navbar.html" %}
 	{% if user.is_authenticated %}
-		<!-- TODO: User Dashboard - Image of the day? -->
+    <div class="container">
+    <div class="welcome">
+        <h1>Welcome, {{ user.username }}</h1>
+
+        Here is a random image for you!
+
+        <div class="row" id="notifications">
+        <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="thumbnail">
+                <a href = {{ rand_image.url }}>
+                    <img src= {{ rand_image.url }} class="img-responsive center-block">
+                </a>
+                <div>
+                    <p class="text-muted text-right small"> {{ rand_image.published_date }} </p>
+                </div>
+                <div class="caption">
+                    <p> {{ rand_image.hashtags }} </p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        If you like it, why not <a href = "/publish">publish</a> one for the world!
+    </div>
+    </div>
 	{% else %}
 	<div class="container">
     <div class="col-md-12">
