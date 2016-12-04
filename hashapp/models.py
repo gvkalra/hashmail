@@ -27,8 +27,18 @@ class ImageModel(models.Model):
         self.published_date = timezone.now()
         
     def notify_subscribed_users(self):
+        from tasks import send_image_notification
+        
+        #We need to get the hashtags primary key in a list
         hashtags = self.image_tags.values_list('pk', flat=True)
-        return ""
+        
+        #We need to get the users subscribed to a hashtag
+        users = UserModel.objects.filter(hashtagmodel__in=hashtags).distinct()
+        
+        for user in users:
+            send_image_notification.delay(user.username, self.pk)
+            print "notification sent to %s" % user.username
+        
      
     def toJSON(self):
         cloudinary_url = "https://res.cloudinary.com/hyiclya8s/image/upload/w_400,h_300/%s" % self.image.url.split("/")[-1]
