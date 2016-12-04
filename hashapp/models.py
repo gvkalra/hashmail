@@ -25,7 +25,8 @@ class ImageModel(models.Model):
     
     def publish(self):
         self.published_date = timezone.now()
-        
+
+
     def notify_subscribed_users(self):
         from tasks import send_image_notification
         
@@ -51,3 +52,10 @@ class ImageModel(models.Model):
                     hashtags=image_tags,
                     author=image_author,
                     published_date=date))
+
+class TimelineModel(models.Model):
+    image = models.OneToManyField(ImageModel)
+    user = models.OneToManyField(UserModel)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return "%s - %s:%s", self.date, self.user, self.image
