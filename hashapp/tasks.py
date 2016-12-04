@@ -22,7 +22,7 @@ def send_image_notification(username, image_pik):
     image_json = ImageModel.objects.get(pk=image_pik).toJSON()
     username = username
     pusher.trigger(username, u'new_image', image_json)
-    return "Send notification to user: %s with image_id: %s" % username, image_pik
+    return "Send notification to user: %s with image_id: %s" % (username, image_pik)
 
 @shared_task
 def save_on_timeline(user_obj, image_obj):
@@ -31,4 +31,4 @@ def save_on_timeline(user_obj, image_obj):
         user=user_obj
     )
     obj.save()
-    return "Save image %s to user %s 's timeline!" % image_pik, user_pik
+    return "Save image %s to user %s 's timeline!" % (image_pik, user_pik)
