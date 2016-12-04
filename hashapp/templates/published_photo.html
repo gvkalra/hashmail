@@ -11,10 +11,14 @@
 	{% include "navbar.html" %}
     <div class="content">
         <h1>Your image has been published</h1>
-        {% cloudinary image width=400 height=300 crop="fill" %}
-        <h2>Tags:</h2>
+        <p class="img-thumbnail">{% cloudinary image width=400 height=300 crop="fill" %}</p><br>
+        <h4 style="display: inline">Tags: </h4>
         {% for tag in tags %}
-        <button type="button" class="btn btn-default">{{ tag }}</button>
+        <button type="button" class="btn button-white btn-md">{{ tag }}</button>
         {% endfor %}
+        <div class="text-center">
+            <p><a class="button-green btn-xlg" href="/publish">Continue publishing</a></p>
+            <p><a class="button-white btn-xlg" href="/">Goto Dashboard</a></p>
+        </div>
     </div>
 {% endblock %}
