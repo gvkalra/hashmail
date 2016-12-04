@@ -39,7 +39,7 @@ class ImageModel(models.Model):
         for user in users:
             send_image_notification.delay(user.username, self.pk)
             print "notification sent to %s" % user.username
-            save_on_timeline(user.id, self.pk)
+            save_on_timeline(user, self)
         
      
     def toJSON(self):
