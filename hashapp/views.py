@@ -103,15 +103,18 @@ def manage_subscription(request):
 @login_required
 def view_notifications(request):
     timeline_objects = TimelineModel.objects.filter(user=request.user)
-    my_list = []
-    if len(timeline_objects) > 0:
-        for timeline_object in timeline_objects:
-            obj = ImageModel.objects.get(pk=timeline_object.image_id)
-            new_element = []
-            new_element.append(obj)
-            new_element.append(timeline_object.date)
-            my_list.append(new_element)
-    return render(request, 'notifications.html', {'my_list':my_list})
+    current_images = []
+
+    for obj in timeline_objects:
+        my_dictionary = {}
+        tags = " ".join(obj.image.image_tags.values_list('tag', flat=True))
+        date = obj.image.date.strftime('%A, %B %d %Y at %H:%M')
+        url = "https://res.cloudinary.com/hootddo4i/image/upload/w_400,h_300/%s" % obj.image.image.url.split("/")[-1]
+        my_dictionary.update({"date": date, "tags": tags, "url": url})       
+
+        current_images.append(my_dictionary)
+    return render(request, 'notifications.html',
+        {'current_images': current_images})
 
 @login_required
 @csrf_exempt

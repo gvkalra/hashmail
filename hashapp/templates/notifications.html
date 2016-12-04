@@ -42,22 +42,6 @@
     <!-- Container -->
     <div class="container">
         <div class="row" id="notifications">
-            <!--{% for object in my_list %}
-                <div class="thumbnail">
-                    <a href = "{{ object[1] }}">
-                        <img src= "{{ object[1]}}" class="img-responsive">
-                    </a>
-                    <div>
-                        <p class="text-muted text-right small"> "{{ object[1] }}" </p>
-                    </div>
-                    <div>
-                        <p class="text-muted text-right small"> "{{ object[1] }}" </p>
-                    </div>
-                    <div class="caption">
-                        <p> "{{ object[1] }}" </p>
-                    </div>
-                </div>
-            {% endfor %}!>
         <!-- Past -->
         {% for image in current_images %}
         <div class="col-lg-3 col-md-4 col-xs-6">
@@ -66,10 +50,10 @@
                     <img src= "{{ image.url }}" class="img-responsive">
                 </a>
                 <div>
-                    <p class="text-muted text-right small"> "{{ image.published_date }}" </p>
+                    <p class="text-muted text-right small"> {{ image.date }} </p>
                 </div>
                 <div class="caption">
-                    <p> "{{ image.hashtags }}" </p>
+                    <p> {{ image.tags }} </p>
                 </div>
             </div>
         </div>
