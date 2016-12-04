@@ -28,7 +28,7 @@ class ImageModel(models.Model):
 
 
     def notify_subscribed_users(self):
-        from tasks import send_image_notification
+        from tasks import send_image_notification, save_on_timeline
         
         #We need to get the hashtags primary key in a list
         hashtags = self.image_tags.values_list('pk', flat=True)
@@ -39,6 +39,7 @@ class ImageModel(models.Model):
         for user in users:
             send_image_notification.delay(user.username, self.pk)
             print "notification sent to %s" % user.username
+            save_on_timeline(user.id, self.pk)
         
      
     def toJSON(self):
