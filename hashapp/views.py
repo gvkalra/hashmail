@@ -125,6 +125,7 @@ def publish_result(request):
 
         my_dictionary.update(dict(image=image))
         my_dictionary.update({"tags": tags})
+        saved_image.notify_subscribed_users()
     else:
         my_dictionary.update(dict(errors = form.errors))
     return render(request, 'published_photo.html', dictionary=my_dictionary)
