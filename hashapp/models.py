@@ -26,13 +26,18 @@ class ImageModel(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         
-    def __unicode__(self):
-        try:
-            public_id = self.image.public_id
-        except AttributeError:
-            public_id = ''
-        return "Photo <%s:%s>" % (self.title, public_id)
-
-    def __str__(self):
-        return "%s - %s",self.image.public_id, self.tags
-
+    def notify_subscribed_users(self):
+        hashtags = self.image_tags.values_list('pk', flat=True)
+        return ""
+     
+    def toJSON(self):
+        cloudinary_url = "https://res.cloudinary.com/hyiclya8s/image/upload/w_400,h_300/%s" % self.image.url.split("/")[-1]
+        image_tags = " ".join(self.image_tags.values_list('tag', flat=True))
+        image_author = "%s" % self.image_author.values_list('username', flat=True)[0]
+        date = self.date.strftime('%A, %B %d %Y at %H:%M')
+        import simplejson
+        #return simplejson.dumps(dict([(attr, getattr(self, attr)) for attr in [f.name for f in self._meta.fields]]))
+        return simplejson.dumps(dict(url = cloudinary_url,
+                    hashtags=image_tags,
+                    author=image_author,
+                    published_date=date))
