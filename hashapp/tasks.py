@@ -3,10 +3,10 @@ from __future__ import absolute_import
 from celery import shared_task
 from .models import ImageModel,TimelineModel
 from pusher import Pusher
+import os
 
-pusher = Pusher(
-    key=u'a0e7e26bf61d7b3849c4',
-)
+pusher = Pusher.from_url(os.environ["PUSHER_URL"])
+
 @shared_task
 def echo(param):
     return 'The test task executed with argument "%s" ' % param
